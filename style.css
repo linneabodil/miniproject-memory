@@ -5,12 +5,49 @@
 }
 
 body {
-  background-color: Linen;
+  background-color: Azure;
 }
 
 .container {
   margin-top: 30px;
 }
+
+/* landing page */
+
+#start-div {
+  border: solid 3px RoyalBlue;
+  background-color: White;
+  width: 320px;
+  margin: auto;
+  text-align: center;
+}
+h1 {
+  font-family: Lobster;
+  font-size: 38px;
+  margin: 25px 0px;
+}
+p {
+  font-family: Open Sans;
+}
+button {
+  border: solid 3px RoyalBlue;
+  background-color: White;
+  color: RoyalBlue;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 10px;
+  margin: 30px 0px;
+}
+button:hover {
+  background-color: RoyalBlue;
+  color: White;
+}
+
+.hidden {
+  display: none;
+}
+
+/* game page */
 
 ul {
   width: 660px;
@@ -19,7 +56,7 @@ ul {
 
 li {
   width: 200px;
-  height: 132px;
+  height: 134px;
   margin: 10px;
   float: left;
   text-align: center;
@@ -31,6 +68,7 @@ h2 {
   color: White;
   z-index: 100;
   margin-top: 50px;
+  visibility: hidden;
 }
 
 img {
@@ -41,21 +79,19 @@ img {
   z-index: -100;
 }
 
-.Montserrat {
-  font-family: Montserrat;
+.active {
+  background-color: LightGreen;
 }
-.Helvetica {
-  font-family: Helvetica;
+.active img {
+  visibility: hidden;
 }
-.Oswald {
-  font-family: Oswald;
+.active h2 {
+  visibility: visible;
 }
-.Cinzel {
-  font-family: Cinzel;
-}
-.Lobster {
-  font-family: Lobster;
-}
-.Amatic {
-  font-family: Amatic SC;
-}
+
+.Montserrat { font-family: Montserrat; }
+.Helvetica { font-family: Helvetica; }
+.Oswald { font-family: Oswald; }
+.Cinzel { font-family: Cinzel; }
+.Lobster { font-family: Lobster; }
+.Amatic { font-family: Amatic SC; }

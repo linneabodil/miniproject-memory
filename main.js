@@ -1,56 +1,50 @@
-var backPic = "https://cmkt-image-prd.global.ssl.fastly.net/0.1.0/ps/319874/1160/772/m1/fpnw/wm1/greeny__patt_21_m-.jpg?1422254781&s=8c6c678c002018019754a4ff28d5766b"
+var backPic = "img/background-pattern.jpg"
 
 var memoryCards = [
-  { back: backPic,
-    name: "Amatic SC"
-  },
-  { back: backPic,
-    name: "Amatic SC"
-  },
-  { back: backPic,
-    name: "Montserrat"
-  },
-  { back: backPic,
-    name: "Montserrat"
-  },
-  { back: backPic,
-    name: "Helvetica"
-  },
-  { back: backPic,
-    name: "Helvetica"
-  },
-  { back: backPic,
-    name: "Cinzel"
-  },
-  { back: backPic,
-    name: "Cinzel"
-  },
-  { back: backPic,
-    name: "Oswald"
-  },
-  { back: backPic,
-    name: "Oswald"
-  },
-  { back: backPic,
-    name: "Lobster"
-  },
-  { back: backPic,
-    name: "Lobster"
-  }
+  { back: backPic, name: "Amatic SC", id: 1 },
+  { back: backPic, name: "Amatic SC", id: 1 },
+  { back: backPic, name: "Montserrat", id: 2 },
+  { back: backPic, name: "Montserrat", id: 2 },
+  { back: backPic, name: "Helvetica", id: 3 },
+  { back: backPic, name: "Helvetica", id: 3 },
+  { back: backPic, name: "Cinzel", id: 4 },
+  { back: backPic, name: "Cinzel", id: 4 },
+  { back: backPic, name: "Oswald", id: 5 },
+  { back: backPic, name: "Oswald", id: 5 },
+  { back: backPic, name: "Lobster", id: 6 },
+  { back: backPic, name: "Lobster", id: 6}
 ]
 
-createCards();
+var start = document.getElementById("start-game").addEventListener("click", function(e) {
+  var startDiv = document.getElementById("start-div")
+  startDiv.setAttribute("class", "hidden");
 
-var cards = document.getElementsByTagName("li");
-for (var j = 0; j < cards.length; j++) {
-  cards[j].addEventListener("click", function(e) {
-    e.preventDefault();
+  createCards();
+  chooseCards();
 
-    console.log(this)
-    this.lastChild.style.visibility = "hidden";
 
-  })
+})
+
+
+// show the front of the card when it is clicked
+function chooseCards() {
+  var openCards = 0;
+  var cards = document.getElementsByTagName("li");
+  for (var j = 0; j < cards.length; j++) {
+    cards[j].addEventListener("click", function(e) {
+      e.preventDefault();
+      openCards++;
+      if (this.className == "") {
+        this.setAttribute("class", "active")
+      }
+      else {
+        this.setAttribute("class", "")
+      }
+    });
+  }
 }
+
+
 
 // set the back, title and etc. of the cards
 function createCards() {
