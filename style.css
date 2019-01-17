@@ -1,8 +1,61 @@
 * {
   margin: 0;
   padding: 0;
+  list-style: none;
 }
 
 body {
-  background-color: Silver;
+  background-color: Linen;
+}
+
+.container {
+  margin-top: 30px;
+}
+
+ul {
+  width: 660px;
+  margin: auto;
+}
+
+li {
+  width: 200px;
+  height: 132px;
+  margin: 10px;
+  float: left;
+  text-align: center;
+  position: relative;
+}
+
+h2 {
+  display: inline-block;
+  color: White;
+  z-index: 100;
+  margin-top: 50px;
+}
+
+img {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -100;
+}
+
+.Montserrat {
+  font-family: Montserrat;
+}
+.Helvetica {
+  font-family: Helvetica;
+}
+.Oswald {
+  font-family: Oswald;
+}
+.Cinzel {
+  font-family: Cinzel;
+}
+.Lobster {
+  font-family: Lobster;
+}
+.Amatic {
+  font-family: Amatic SC;
 }
