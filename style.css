@@ -3,11 +3,9 @@
   padding: 0;
   list-style: none;
 }
-
 body {
   background-color: Azure;
 }
-
 .container {
   margin-top: 30px;
 }
@@ -47,11 +45,29 @@ button:hover {
   display: none;
 }
 
+/* score counter */
+
+#score-counter {
+  width: 80px;
+  height: 20px;
+  text-align: center;
+  border: solid 3px RoyalBlue;
+  background-color: White;
+  color: RoyalBlue;
+  margin: auto;
+  padding: 5px;
+}
+h3 {
+  display: inline-block;
+  font-family: Montserrat;
+}
+
 /* game page */
 
 ul {
   width: 660px;
   margin: auto;
+  overflow: hidden;
 }
 
 li {
