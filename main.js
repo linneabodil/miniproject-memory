@@ -1,11 +1,11 @@
 import { memoryCards, backPic } from './modules/card-info.js';
+import { hideCards, turnDownCards, createCards, summary } from './modules/functions.js';
 
 
 window.onload = document.getElementById("start-game").addEventListener("click", function(e) {
   e.preventDefault();
   // hide the landing page
-  var startDiv = document.getElementById("start-div")
-  startDiv.setAttribute("class", "hidden");
+  document.getElementById("start-div").setAttribute("class", "hidden");
   // show the score counting div
   document.getElementById("score-counter").setAttribute("class", "")
 
@@ -23,7 +23,7 @@ window.onload = document.getElementById("start-game").addEventListener("click", 
   var clickCounter = document.getElementById("clicks");
   clickCounter.innerHTML = clicks;
 
-  shuffle(memoryCards);
+  //shuffle(memoryCards);
   // show the cards on the board
   createCards();
 
@@ -48,7 +48,6 @@ window.onload = document.getElementById("start-game").addEventListener("click", 
             memoryCards.splice(n, 1);
             var m = memoryCards.findIndex(x => x.id == choosenCards[1])
             memoryCards.splice(m, 1);
-            console.log(memoryCards)
             setTimeout(function triggerHideCards() {
               hideCards()
             }, 1000)
@@ -58,12 +57,13 @@ window.onload = document.getElementById("start-game").addEventListener("click", 
             turnDownCards()
             choosenCards = [];
           }, 1000);
-
-          if (memoryCards.length == 0) {
-            clearInterval(gameCounter);
-            console.log(timer)
-            console.log(clicks)
-          }
+        }
+        if (memoryCards.length == 0) {
+          clearInterval(gameCounter);
+          console.log(timer)
+          console.log(clicks)
+          document.getElementById("final-score").innerHTML += timer + "seconds and " + clicks + " clicks. Well done!";
+          summary();
         }
       }
     });
@@ -77,38 +77,4 @@ function shuffle(a) {
     [a[i], a[j]] = [a[j], a[i]];
   }
   return a;
-}
-
-// hide the cards that has been matched
-function hideCards() {
-  var cardsToHide = document.getElementsByClassName("active");
-  for (var i = 0; i < cardsToHide.length; i++) {
-    cardsToHide[i].style.visibility = "hidden"
-  }
-}
-
-// shows the back of the cards again, if there is no match
-function turnDownCards() {
-  var cardsToTurn = document.getElementsByClassName("active");
-  for (var i = 0; i < cardsToTurn.length; i + 2) {
-    cardsToTurn[i].setAttribute("class", "")
-  }
-}
-
-// set the back, title and etc. of the cards
-function createCards() {
-  var cardsList = document.getElementById("cards-list");
-  for (var i = 0; i < memoryCards.length; i++) {
-    var card = document.createElement("li");
-    var backOfCard = document.createElement("img");
-    backOfCard.src = memoryCards[i].back;
-    var cardTitle = document.createElement("h2");
-    cardTitle.innerHTML = memoryCards[i].name;
-    cardTitle.setAttribute("class", memoryCards[i].name)
-    card.setAttribute("id", memoryCards[i].id);
-
-    card.appendChild(cardTitle);
-    card.appendChild(backOfCard);
-    cardsList.appendChild(card)
-  }
 }

@@ -97,6 +97,13 @@ img {
   border-radius: 10px;
 }
 
+/* game summary */
+
+#game-summary {
+  text-align: center;
+  font-family: Montserrat;
+}
+
 .active {
   background-color: LightGreen;
 }
