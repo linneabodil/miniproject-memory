@@ -1,24 +1,34 @@
 import { memoryCards, backPic } from './modules/card-info.js';
 
-var start = document.getElementById("start-game").addEventListener("click", function(e) {
+
+window.onload = document.getElementById("start-game").addEventListener("click", function(e) {
   e.preventDefault();
   // hide the landing page
   var startDiv = document.getElementById("start-div")
   startDiv.setAttribute("class", "hidden");
   // show the score counting div
   document.getElementById("score-counter").setAttribute("class", "")
-  // show the cards on the board
-  createCards();
+
+  // timer
+  var timer = 0;
+  var timeCounter = document.getElementById("timer");
+  timeCounter.innerHTML = timer;
+  var gameCounter = setInterval(function counter() {
+    timer++;
+    timeCounter.innerHTML = timer;
+  }, 1000);
 
   // count the number of clicks the player
   var clicks = 0;
   var clickCounter = document.getElementById("clicks");
   clickCounter.innerHTML = clicks;
 
+  shuffle(memoryCards);
+  // show the cards on the board
+  createCards();
 
   // the upturned cards
   var choosenCards = [];
-  var foundPairs = [];
   var cards = document.getElementsByTagName("li");
   for (var i = 0; i < cards.length; i++) {
     cards[i].addEventListener("click", function(e) {
@@ -27,37 +37,47 @@ var start = document.getElementById("start-game").addEventListener("click", func
         clicks++;
         clickCounter.innerHTML = clicks;
 
-        console.log(clicks)
         // show the front of the card when it is clicked
         if (this.className == "") {
-          this.classList.toggle("active")
+          this.classList.add("active", "disabled")
         }
         choosenCards += this.id;
         if (choosenCards.length == 2) {
           if (choosenCards[0] == choosenCards[1]) {
-            var x = memoryCards.findIndex(x => x.id == choosenCards[0])
-            foundPairs.push(memoryCards[x],memoryCards[x+1]);
-            memoryCards.splice(x, 2);
-            console.log(foundPairs)
+            var n = memoryCards.findIndex(x => x.id == choosenCards[0])
+            memoryCards.splice(n, 1);
+            var m = memoryCards.findIndex(x => x.id == choosenCards[1])
+            memoryCards.splice(m, 1);
             console.log(memoryCards)
             setTimeout(function triggerHideCards() {
               hideCards()
             }, 1000)
           }
-          // wait two seconds before turning the cards back around
+          // wait before turning the cards back around
           setTimeout(function triggerCardTurn() {
             turnDownCards()
             choosenCards = [];
-          }, 2000);
+          }, 1000);
+
           if (memoryCards.length == 0) {
-            alert("game over")
+            clearInterval(gameCounter);
+            console.log(timer)
+            console.log(clicks)
           }
         }
-
       }
     });
   }
 })
+
+// shuffle the cards
+function shuffle(a) {
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
 
 // hide the cards that has been matched
 function hideCards() {

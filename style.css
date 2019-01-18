@@ -13,15 +13,14 @@ body {
 /* landing page */
 
 #start-div {
-  border: solid 3px RoyalBlue;
-  background-color: White;
-  width: 320px;
-  margin: auto;
+  max-width: 1000px;
+  margin: 200px auto;
   text-align: center;
 }
 h1 {
+  color: RoyalBlue;
   font-family: Lobster;
-  font-size: 38px;
+  font-size: 80px;
   margin: 25px 0px;
 }
 p {
@@ -33,7 +32,8 @@ button {
   color: RoyalBlue;
   text-transform: uppercase;
   font-weight: bold;
-  padding: 10px;
+  font-size: 18px;
+  padding: 12px;
   margin: 30px 0px;
 }
 button:hover {
@@ -48,18 +48,18 @@ button:hover {
 /* score counter */
 
 #score-counter {
-  width: 80px;
-  height: 20px;
-  text-align: center;
-  border: solid 3px RoyalBlue;
-  background-color: White;
-  color: RoyalBlue;
+  width: 660px;
+  color: White;
+  font-family: Montserrat;
   margin: auto;
-  padding: 5px;
 }
 h3 {
-  display: inline-block;
-  font-family: Montserrat;
+  margin-left: 10px;
+  clear: left;
+}
+#score-counter h3, p {
+  color: Black;
+  display: inline;
 }
 
 /* game page */
@@ -77,6 +77,7 @@ li {
   float: left;
   text-align: center;
   position: relative;
+  border-radius: 10px;
 }
 
 h2 {
@@ -93,6 +94,7 @@ img {
   top: 0;
   left: 0;
   z-index: -100;
+  border-radius: 10px;
 }
 
 .active {
@@ -103,6 +105,10 @@ img {
 }
 .active h2 {
   visibility: visible;
+}
+
+.disabled {
+  pointer-events: none;
 }
 
 .Montserrat { font-family: Montserrat; }
