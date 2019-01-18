@@ -1,20 +1,4 @@
-var backPic = "img/background-pattern.jpg"
-
-var memoryCards = [
-  { back: backPic, name: "Amatic SC", id: 1 },
-  { back: backPic, name: "Amatic SC", id: 1 },
-  { back: backPic, name: "Montserrat", id: 2 },
-  { back: backPic, name: "Montserrat", id: 2 },
-  { back: backPic, name: "Helvetica", id: 3 },
-  { back: backPic, name: "Helvetica", id: 3 },
-  { back: backPic, name: "Cinzel", id: 4 },
-  { back: backPic, name: "Cinzel", id: 4 },
-  { back: backPic, name: "Oswald", id: 5 },
-  { back: backPic, name: "Oswald", id: 5 },
-  { back: backPic, name: "Lobster", id: 6 },
-  { back: backPic, name: "Lobster", id: 6}
-]
-
+import { memoryCards, backPic } from './modules/card-info.js';
 
 var start = document.getElementById("start-game").addEventListener("click", function(e) {
   e.preventDefault();
@@ -26,51 +10,74 @@ var start = document.getElementById("start-game").addEventListener("click", func
   // show the cards on the board
   createCards();
 
-  // the cards with the frontpage visible
+  // count the number of clicks the player
+  var clicks = 0;
+  var clickCounter = document.getElementById("clicks");
+  clickCounter.innerHTML = clicks;
+
+
+  // the upturned cards
   var choosenCards = [];
   var foundPairs = [];
   var cards = document.getElementsByTagName("li");
-  for (var j = 0; j < cards.length; j++) {
-    cards[j].addEventListener("click", function(e) {
+  for (var i = 0; i < cards.length; i++) {
+    cards[i].addEventListener("click", function(e) {
       e.preventDefault();
-      // show the front of the card when it is clicked
-      if (this.className == "") {
-        this.setAttribute("class", "active")
-      }
-      choosenCards += this.id;
-      if (choosenCards.length == 2) {
-        if (choosenCards[0] == choosenCards[1]) {
-          var x = memoryCards.findIndex(x => x.id == choosenCards[0])
-          memoryCards.splice(x, 2)
-          foundPairs += memoryCards[x] + memoryCards[x+1];
-          console.log(foundPairs)
-          console.log(memoryCards)
+      if (choosenCards.length < 2) {
+        clicks++;
+        clickCounter.innerHTML = clicks;
+
+        console.log(clicks)
+        // show the front of the card when it is clicked
+        if (this.className == "") {
+          this.classList.toggle("active")
         }
-        // wait two seconds before turning the cards back around
-        setTimeout(function triggerCardTurn() {
-          turnDownCards()
-        }, 2000);
-        choosenCards = [];
-        
-        // shows the back of the cards again, if there is no match
-        function turnDownCards() {
-          var cardsToTurn = document.getElementsByClassName("active");
-          for (var i = 0; i < cardsToTurn.length; i + 2) {
-            cardsToTurn[i].setAttribute("class", "")
+        choosenCards += this.id;
+        if (choosenCards.length == 2) {
+          if (choosenCards[0] == choosenCards[1]) {
+            var x = memoryCards.findIndex(x => x.id == choosenCards[0])
+            foundPairs.push(memoryCards[x],memoryCards[x+1]);
+            memoryCards.splice(x, 2);
+            console.log(foundPairs)
+            console.log(memoryCards)
+            setTimeout(function triggerHideCards() {
+              hideCards()
+            }, 1000)
+          }
+          // wait two seconds before turning the cards back around
+          setTimeout(function triggerCardTurn() {
+            turnDownCards()
+            choosenCards = [];
+          }, 2000);
+          if (memoryCards.length == 0) {
+            alert("game over")
           }
         }
+
       }
     });
   }
 })
 
+// hide the cards that has been matched
+function hideCards() {
+  var cardsToHide = document.getElementsByClassName("active");
+  for (var i = 0; i < cardsToHide.length; i++) {
+    cardsToHide[i].style.visibility = "hidden"
+  }
+}
 
-
+// shows the back of the cards again, if there is no match
+function turnDownCards() {
+  var cardsToTurn = document.getElementsByClassName("active");
+  for (var i = 0; i < cardsToTurn.length; i + 2) {
+    cardsToTurn[i].setAttribute("class", "")
+  }
+}
 
 // set the back, title and etc. of the cards
 function createCards() {
   var cardsList = document.getElementById("cards-list");
-
   for (var i = 0; i < memoryCards.length; i++) {
     var card = document.createElement("li");
     var backOfCard = document.createElement("img");
@@ -78,7 +85,7 @@ function createCards() {
     var cardTitle = document.createElement("h2");
     cardTitle.innerHTML = memoryCards[i].name;
     cardTitle.setAttribute("class", memoryCards[i].name)
-    card.setAttribute("id", memoryCards[i].id)
+    card.setAttribute("id", memoryCards[i].id);
 
     card.appendChild(cardTitle);
     card.appendChild(backOfCard);
