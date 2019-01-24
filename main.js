@@ -1,11 +1,8 @@
 import { memoryCards, backPic } from './modules/card-info.js';
 import { hideCards, turnDownCards, createCards, summary } from './modules/functions.js';
 
+window.onload = function() {
 
-window.onload = document.getElementById("start-game").addEventListener("click", function(e) {
-  e.preventDefault();
-  // hide the landing page
-  document.getElementById("start-div").setAttribute("class", "hidden");
   // show the score counting div
   document.getElementById("score-counter").setAttribute("class", "")
 
@@ -23,7 +20,7 @@ window.onload = document.getElementById("start-game").addEventListener("click", 
   var clickCounter = document.getElementById("clicks");
   clickCounter.innerHTML = clicks;
 
-  shuffle(memoryCards);
+  //shuffle(memoryCards);
   // show the cards on the board
   createCards();
 
@@ -62,13 +59,15 @@ window.onload = document.getElementById("start-game").addEventListener("click", 
           clearInterval(gameCounter);
           console.log(timer)
           console.log(clicks)
-          document.getElementById("final-score").innerHTML += timer + "seconds and " + clicks + " clicks. Well done!";
-          summary();
+          document.getElementById("final-score").innerHTML += timer + " seconds and used " + clicks + " clicks. Well done!";
+          setTimeout(function triggerSummary() {
+            summary();
+          }, 1500);
         }
       }
     });
   }
-})
+}
 
 // shuffle the cards
 function shuffle(a) {

@@ -41,7 +41,8 @@ function createCards() {
     cardInner.appendChild(frontOfCard);
     cardInner.appendChild(backOfCard);
     card.appendChild(cardInner);
-    cardsList.appendChild(card);
+    var score = document.getElementById("score-counter");
+    cardsList.insertBefore(card, score);
   }
 }
 

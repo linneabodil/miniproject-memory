@@ -2,33 +2,40 @@
   margin: 0;
   padding: 0;
   list-style: none;
+  text-decoration: none;
 }
 body {
-  background-color: Azure;
+  background-color: LavenderBlush;
 }
-.container {
-  margin-top: 30px;
-}
+
+.Monoton { font-family: Monoton; }
+.Helvetica { font-family: Helvetica; }
+.Oswald { font-family: Oswald; }
+.Cinzel { font-family: Cinzel; }
+.Lobster { font-family: Lobster; }
+.Amatic { font-family: Amatic SC; }
+
+.disabled { pointer-events: none; }
+.hidden { display: none; }
+
 
 /* landing page */
 #start-div {
-  max-width: 1000px;
-  margin: 200px auto;
   text-align: center;
 }
 h1 {
-  color: RoyalBlue;
+  color: DarkMagenta;
   font-family: Lobster;
-  font-size: 80px;
+  font-size: 60px;
   margin: 25px 0px;
 }
 p {
-  font-family: Open Sans;
+  font-family: "Open Sans";
 }
 button {
-  border: solid 3px RoyalBlue;
+  border: solid 3px DarkMagenta;
   background-color: White;
-  color: RoyalBlue;
+  color: DarkMagenta;
   text-transform: uppercase;
   font-weight: bold;
   font-size: 18px;
@@ -36,40 +43,37 @@ button {
   margin: 30px 0px;
 }
 button:hover {
-  background-color: RoyalBlue;
+  background-color: DarkMagenta;
   color: White;
-}
-.hidden {
-  display: none;
 }
 
 /* game page */
 ul {
-  width: 660px;
+  width: 330px;
   margin: auto;
   overflow: hidden;
 }
 li {
-  width: 200px;
-  height: 134px;
+  width: 100px;
+  height: 77px;
   margin: 5px;
   float: left;
   text-align: center;
   position: relative;
   border-radius: 5px;
+  perspective: 1000px;
 }
 /* front */
 .front {
   background-color: Thistle;
-  border-radius: 10px;
+  border-radius: 5px;
   transform: rotateY(180deg);
 }
 h2 {
   display: inline-block;
   color: White;
-  font-size: 1.8em;
-  z-index: 100;
-  margin-top: 45px;
+  font-size: 1em;
+  margin-top: 25px;
 }
 /* back */
 img {
@@ -77,12 +81,11 @@ img {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: -100;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 .front, .back {
-  width: 200px;
-  height: 134px;
+  width: 100px;
+  height: 77px;
   position: absolute;
   top: 0px;
   left: 0px;
@@ -91,13 +94,15 @@ img {
 
 /* score counter */
 #score-counter {
-  width: 660px;
+  display: inline-block;
+  width: 330px;
   color: White;
   font-family: Montserrat;
   margin: auto;
 }
 h3 {
-  margin-left: 10px;
+  margin-left: 5px;
+  font-size: 16px;
   clear: left;
 }
 #score-counter h3, p {
@@ -110,9 +115,6 @@ ul {
   transition: transform 0.8s;
   transform-style: preserve-3d;
 }
-li {
-  perspective: 1000px;
-}
 .active .inner {
   transform: rotateY(180deg);
 }
@@ -121,20 +123,56 @@ li {
   transform-style: preserve-3d;
 }
 
-
 /* game summary */
 #game-summary {
+  display: block;
+  width: 90%;
   text-align: center;
   font-family: Montserrat;
+  margin: auto;
+}
+#game-summary h1 {
+  font-size: 40px;
 }
 
-.disabled {
-  pointer-events: none;
+@media screen and (min-width: 600px) {
+  h1 {
+    font-size: 80px;
+  }
+  button {
+    font-size: 22px;
+    padding: 14px;
+  }
+  /* game */
+  ul {
+    width: 654px;
+  }
+  li {
+    width: 200px;
+    height: 134px;
+    margin: 8px;
+  }
+  .front, .back {
+    width: 200px;
+    height: 134px;
+  }
+  h2 {
+    font-size: 1.8em;
+    margin-top: 45px;
+  }
+  /* score counter */
+  #score-counter {
+    width: 660px;
+  }
+  h3 {
+    margin-left: 10px;
+    font-size: 22px;
+  }
+  /* summary */
+  #game-summary {
+    width: 100%;
+  }
+  #game-summary h1 {
+    font-size: 80px;
+  }
 }
-
-.Monoton { font-family: Monoton; }
-.Helvetica { font-family: Helvetica; }
-.Oswald { font-family: Oswald; }
-.Cinzel { font-family: Cinzel; }
-.Lobster { font-family: Lobster; }
-.Amatic { font-family: Amatic SC; }
