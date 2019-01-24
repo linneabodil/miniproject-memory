@@ -24,16 +24,24 @@ function turnDownCards() {
 function createCards() {
   for (var i = 0; i < memoryCards.length; i++) {
     var card = document.createElement("li");
+    var cardInner = document.createElement("div");
+    cardInner.setAttribute("class", "inner");
     var backOfCard = document.createElement("img");
+    backOfCard.setAttribute("class", "back")
     backOfCard.src = memoryCards[i].back;
+
+    var frontOfCard = document.createElement("div");
+    frontOfCard.setAttribute("class", "front")
     var cardTitle = document.createElement("h2");
     cardTitle.innerHTML = memoryCards[i].name;
     cardTitle.setAttribute("class", memoryCards[i].name)
+    frontOfCard.appendChild(cardTitle)
     card.setAttribute("id", memoryCards[i].id);
 
-    card.appendChild(cardTitle);
-    card.appendChild(backOfCard);
-    cardsList.appendChild(card)
+    cardInner.appendChild(frontOfCard);
+    cardInner.appendChild(backOfCard);
+    card.appendChild(cardInner);
+    cardsList.appendChild(card);
   }
 }
 
