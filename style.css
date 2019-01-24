@@ -8,6 +8,11 @@ body {
   background-color: LavenderBlush;
 }
 
+.container {
+  width: 100%;
+  margin: 30px auto;
+}
+
 .Monoton { font-family: Monoton; }
 .Helvetica { font-family: Helvetica; }
 .Oswald { font-family: Oswald; }
@@ -49,31 +54,31 @@ button:hover {
 
 /* game page */
 ul {
-  width: 330px;
+  width: 390px;
   margin: auto;
   overflow: hidden;
 }
 li {
-  width: 100px;
-  height: 77px;
+  width: 120px;
+  height: 97px;
   margin: 5px;
   float: left;
   text-align: center;
   position: relative;
   border-radius: 5px;
-  perspective: 1000px;
+  -webkit-perspective: 1000px;
 }
 /* front */
 .front {
   background-color: Thistle;
   border-radius: 5px;
-  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
 }
 h2 {
   display: inline-block;
   color: White;
   font-size: 1em;
-  margin-top: 25px;
+  margin-top: 35px;
 }
 /* back */
 img {
@@ -84,18 +89,18 @@ img {
   border-radius: 5px;
 }
 .front, .back {
-  width: 100px;
-  height: 77px;
+  width: 120px;
+  height: 97px;
   position: absolute;
   top: 0px;
   left: 0px;
-  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 /* score counter */
 #score-counter {
   display: inline-block;
-  width: 330px;
+  width: 390px;
   color: White;
   font-family: Montserrat;
   margin: auto;
@@ -112,20 +117,19 @@ h3 {
 
 /* flip effect */
 ul {
-  transition: transform 0.8s;
-  transform-style: preserve-3d;
+  -webkit-transition: transform 0.8s;
+  -webkit-transform-style: preserve-3d;
 }
 .active .inner {
-  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
 }
 .inner {
-  transition: transform 0.8s;
-  transform-style: preserve-3d;
+  -webkit-transition: transform 0.8s;
+  -webkit-transform-style: preserve-3d;
 }
 
 /* game summary */
 #game-summary {
-  display: block;
   width: 90%;
   text-align: center;
   font-family: Montserrat;

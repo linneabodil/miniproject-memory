@@ -20,7 +20,7 @@ window.onload = function() {
   var clickCounter = document.getElementById("clicks");
   clickCounter.innerHTML = clicks;
 
-  //shuffle(memoryCards);
+  shuffle(memoryCards);
   // show the cards on the board
   createCards();
 
