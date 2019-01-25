@@ -80,7 +80,7 @@ h2 {
   display: inline-block;
   color: White;
   font-size: 1.6em;
-  margin-top: 45px;
+  margin-top: 40px;
 }
 /* front */
 .front {
@@ -139,9 +139,6 @@ ul {
 }
 
 @media screen and (min-width: 800px) {
-  body {
-    background-color: Linen;
-  }
   ul {
     width: 570px;
   }
@@ -156,9 +153,6 @@ ul {
 }
 
 @media screen and (min-width: 1000px) {
-  body {
-    background-color: Azure;
-  }
   h1 {
     font-size: 80px;
   }
